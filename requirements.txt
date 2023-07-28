@@ -1,5 +1,7 @@
 streamlit
+chainlit
 openai
 langchain
 huggingface_hub
+cohere
 tiktoken
