@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+  composer:
+    build:
+      context: .
+    env_file:
+      - ./.env
+    ports:
+      - 8000:8000
+
+
+# docker compose up --build
