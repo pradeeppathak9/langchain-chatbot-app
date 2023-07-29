@@ -1,13 +1,16 @@
 import os
 import chainlit as cl
-
 from langchain import HuggingFaceHub, PromptTemplate, LLMChain
 from langchain.llms import Cohere
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
 
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
 
+print("ENV_VARIABLE_LOADED -", os.environ['ENV_VARIABLE_LOADED'])
 
 llm_to_use = 'openai'
 
@@ -16,9 +19,15 @@ def main():
     # Instantiate the chain for that user session
     memory = ConversationBufferMemory()
     if llm_to_use == 'cohere':
-        llm = Cohere(cohere_api_key=os.environ['COHERE_API_KEY'], temperature=0.0)
+        llm = Cohere(
+            cohere_api_key=os.environ['COHERE_API_KEY'], 
+            temperature=0.0
+        )
     elif llm_to_use == 'openai':
-        llm = ChatOpenAI(temperature=0.0)
+        llm = ChatOpenAI(
+            openai_api_key=os.environ["OPENAI_API_KEY"],
+            temperature=0.0
+        )
     else:
         model_id = "tiiuae/falcon-7b-instruct"
         llm = HuggingFaceHub(
