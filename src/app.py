@@ -10,8 +10,6 @@ from langchain.chains import ConversationChain
 from dotenv import load_dotenv
 load_dotenv()
 
-print("ENV_VARIABLE_LOADED -", os.environ['ENV_VARIABLE_LOADED'])
-
 llm_to_use = 'openai'
 
 @cl.on_chat_start
